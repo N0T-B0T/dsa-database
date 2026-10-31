@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dossier-header">
+
+    <div style="margin-bottom: 1rem; color: var(--text-dim);">
+            <a href="javascript:history.back()" style="color: var(--accent); text-decoration: none;">&larr; НАЗАД</a>
+        </div>
+        
+    <div style="color: var(--text-dim); font-size: 0.8rem; margin-bottom: 0.5rem;">
+        ДОСЬЕ СВЕРХЧЕЛОВЕКА // ID: {{ hero.id }}
+    </div>
+    <h2>{{ hero.codename }}</h2>
+    
+    <div style="margin-top: 1.5rem;">
+        <a href="/full-dossier/{{ hero.id }}" style="color: var(--accent); text-decoration: none; font-size: 0.85rem; border: 1px solid var(--accent); padding: 0.4rem 1rem; display: inline-block; letter-spacing: 1px;">
+            [ ОТКРЫТЬ ПОЛНУЮ ИНФОРМАЦИЮ ]
+        </a>
+    </div>
+</div>
+
+<div class="dossier-grid">
+    <div class="field">
+        <div class="label">НАСТОЯЩЕЕ ИМЯ</div>
+        <div class="value">{{ hero.real_name }}</div>
+    </div>
+    <div class="field">
+        <div class="label">ДАТА РОЖДЕНИЯ</div>
+        <div class="value">{{ hero.birth_date }}</div>
+    </div>
+    <div class="field">
+        <div class="label">ПРОИСХОЖДЕНИЕ</div>
+        <div class="value">{{ hero.origin }}</div>
+    </div>
+    <div class="field">
+        <div class="label">СТАТУС</div>
+        <div class="value status-active">{{ hero.status }}</div>
+    </div>
+    <div class="field">
+        <div class="label">ТИП ПРОРЫВА</div>
+        <div class="value">{{ hero.type }}</div>
+    </div>
+    <div class="field">
+        <div class="label">КЛАСС СИЛЫ</div>
+        <div class="value">{{ hero.class }}</div>
+    </div>
+    <div class="field">
+        <div class="label">ПРИНАДЛЕЖНОСТЬ</div>
+        <div class="value">{{ hero.affiliation }}</div>
+    </div>
+    <div class="field">
+        <div class="label">УРОВЕНЬ УГРОЗЫ</div>
+        <div class="value"><span class="threat-{{ hero.threat_level|lower }}">{{ hero.threat_level }}</span></div>
+    </div>
+    <div class="field">
+        <div class="label">ДОПУСК</div>
+        <div class="value">{{ hero.clearance }}</div>
+    </div>
+</div>
+
+<div style="background: var(--bg-panel); padding: 1.5rem; margin-top: 1.5rem; border: 1px solid var(--border);">
+    <div class="label" style="color: var(--text-dim); font-size: 0.7rem; letter-spacing: 2px;">КРАТКАЯ ИНФОРМАЦИЯ</div>
+    <p style="margin-top: 0.5rem; line-height: 1.6;">{{ hero.bio }}</p>
+</div>
+
+<div style="background: var(--bg-panel); padding: 1.5rem; margin-top: 1.5rem; border: 1px solid var(--border);">
+    <div class="label" style="color: var(--text-dim); font-size: 0.7rem; letter-spacing: 2px;">СПОСОБНОСТИ И ОСОБЫЕ НАВЫКИ</div>
+    <ul style="margin-top: 0.5rem; padding-left: 1.5rem; line-height: 1.8;">
+        {% for skill in hero.skills %}
+        <li>{{ skill }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

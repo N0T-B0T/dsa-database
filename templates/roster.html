@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 style="color: var(--accent); margin-bottom: 1.5rem;">// РЕЕСТР СВЕРХЛЮДЕЙ</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Позывной</th>
+            <th>Тип</th>
+            <th>Класс</th>
+            <th>Статус</th>
+            <th>Угроза</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for hero in heroes %}
+        <tr>
+            <td>{{ hero.id }}</td>
+            <td>
+    <a class="agent-link" href="/dossier/{{ hero.id }}">{{ hero.codename }}</a>
+</td>
+            <td>{{ hero.type }}</td>
+            <td>{{ hero.class }}</td>
+            <td class="status-active">{{ hero.status }}</td>
+            <td><span class="threat-{{ hero.threat_level|lower }}">{{ hero.threat_level }}</span></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

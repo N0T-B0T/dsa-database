@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 style="color: var(--accent); margin-bottom: 1.5rem;">// БАЗА ДАННЫХ ИНЦИДЕНТОВ</h2>
+
+<div style="margin-bottom: 2rem;">
+    <label style="color: var(--text-dim); font-size: 0.8rem;">
+        ФИЛЬТР: 
+        <select style="background: var(--bg-panel); color: var(--text); border: 1px solid var(--border); padding: 0.3rem 0.8rem; margin-left: 0.5rem;">
+            <option>Все категории</option>
+            <option>Вигиланты</option>
+            <option>Суперзлодеи</option>
+            <option>Массовые беспорядки</option>
+            <option>Террористические акты</option>
+        </select>
+    </label>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Локация</th>
+            <th>Дата</th>
+            <th>Категория</th>
+            <th>Угроза</th>
+            <th>Статус</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for incident in incidents %}
+        <tr>
+            <td>{{ incident.id }}</td>
+            <td><a class="agent-link" href="/incident/{{ incident.id }}">{{ incident.title }}</a></td>
+            <td>{{ incident.location }}</td>
+            <td>{{ incident.date }}</td>
+            <td>{{ incident.category }}</td>
+            <td><span class="threat-{{ incident.threat_level|lower }}">{{ incident.threat_level }}</span></td>
+            <td class="status-{{ incident.status|lower }}">{{ incident.status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

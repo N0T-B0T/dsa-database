@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 style="color: var(--accent); margin-bottom: 1.5rem;">// СИСТЕМНЫЙ ОБЗОР</h2>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="label">Всего прорывников</div>
+        <div class="value">{{ total }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="label">Активных</div>
+        <div class="value">{{ active }}</div>
+    </div>
+    <div class="stat-card">
+        <div class="label">Уровень угрозы</div>
+        <div class="value" style="color: var(--accent);">Средний</div>
+    </div>
+    <div class="stat-card">
+        <div class="label">Последнее обновление</div>
+        <div class="value" style="font-size: 1rem;">30.10.2026</div>
+    </div>
+</div>
+
+<div style="background: var(--bg-panel); padding: 1.5rem; border: 1px solid var(--border);">
+    <h3 style="color: var(--accent); margin-bottom: 1rem;">// ПОСЛЕДНИЕ СОБЫТИЯ В РЕГИОНЕ</h3>
+    
+    {% for incident in incidents %}
+    <div style="padding: 1rem; border-left: 3px solid var(--accent-red); margin-bottom: 1rem; background: #0f1525;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <a href="/incident/{{ incident.id }}" style="color: var(--accent); text-decoration: none; font-weight: bold;">
+                {{ incident.title }}
+            </a>
+            <span class="threat-{{ incident.threat_level|lower }}" style="font-size: 0.7rem;">{{ incident.threat_level }}</span>
+        </div>
+        <div style="color: var(--text-dim); font-size: 0.8rem; margin-bottom: 0.5rem;">
+            {{ incident.location }} // {{ incident.date }}
+        </div>
+        <p style="color: var(--text); font-size: 0.9rem; line-height: 1.5;">
+            {{ incident.summary }}
+        </p>
+    </div>
+    {% endfor %}
+    
+    <a href="/incidents" style="color: var(--text-dim); text-decoration: none; font-size: 0.9rem;">
+        ПОЛНЫЙ СПИСОК СОБЫТИЙ &rarr;
+    </a>
+</div>
+{% endblock %}

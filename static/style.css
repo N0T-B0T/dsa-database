@@ -1,0 +1,194 @@
+:root {
+    --bg-dark: #0a0e1a;
+    --bg-panel: #131a2e;
+    --accent: #c9a227;
+    --accent-red: #a83232;
+    --text: #d4d8e0;
+    --text-dim: #6b7280;
+    --border: #2a3452;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Courier New', monospace;
+    background: var(--bg-dark);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* Шапка */
+header {
+    background: linear-gradient(90deg, var(--bg-panel) 0%, #1a2340 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    color: var(--accent);
+    font-size: 1.5rem;
+    letter-spacing: 3px;
+}
+
+header .badge {
+    background: var(--accent-red);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+}
+
+nav {
+    background: var(--bg-panel);
+    padding: 0.8rem 2rem;
+    border-bottom: 1px solid var(--border);
+}
+
+nav a {
+    color: var(--text);
+    text-decoration: none;
+    margin-right: 2rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+nav a:hover { color: var(--accent); }
+
+/* Контейнер */
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+/* Карточки статистики */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--accent);
+    padding: 1.5rem;
+}
+
+.stat-card .label {
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.stat-card .value {
+    color: var(--accent);
+    font-size: 2rem;
+    margin-top: 0.5rem;
+}
+
+/* Таблица агентов */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-panel);
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    color: var(--accent);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+tr:hover { background: #1a2340; }
+
+a.agent-link {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+a.agent-link:hover { text-decoration: underline; }
+
+/* Статусы */
+.status-active { color: #4ade80; }
+.status-inactive { color: var(--accent-red); }
+
+.threat-red { 
+    background: var(--accent-red); 
+    color: white; 
+    padding: 0.2rem 0.6rem; 
+    font-size: 0.75rem;
+}
+
+/* Досье */
+.dossier-header {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.dossier-header h2 {
+    color: var(--accent);
+    font-size: 2rem;
+    letter-spacing: 3px;
+}
+
+.dossier-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.field {
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.field .label {
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+}
+
+.field .value {
+    color: var(--text);
+    margin-top: 0.3rem;
+}
+
+/* Футер */
+footer {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+}
+/* Вики-ссылки в тексте досье */
+.wiki-link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+    transition: all 0.2s ease;
+}
+
+.wiki-link:hover {
+    color: #ffffff;
+    text-decoration-style: solid;
+    text-decoration-color: var(--accent);
+}

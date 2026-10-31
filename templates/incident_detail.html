@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="margin-bottom: 1rem; color: var(--text-dim);">
+    <a href="/incidents" style="color: var(--accent); text-decoration: none;">&larr; НАЗАД К СПИСКУ</a>
+</div>
+
+<div class="dossier-header">
+    <div style="color: var(--text-dim); font-size: 0.8rem; margin-bottom: 0.5rem;">
+        ИНЦИДЕНТ // ID: {{ incident.id }}
+    </div>
+    <h2>{{ incident.title }}</h2>
+    <div style="color: var(--text-dim); margin-top: 0.5rem;">{{ incident.location }}</div>
+</div>
+
+<div class="dossier-grid">
+    <div class="field">
+        <div class="label">ДАТА</div>
+        <div class="value">{{ incident.date }}</div>
+    </div>
+    <div class="field">
+        <div class="label">СТАТУС</div>
+        <div class="value status-{{ incident.status|lower }}">{{ incident.status }}</div>
+    </div>
+    <div class="field">
+        <div class="label">КАТЕГОРИЯ</div>
+        <div class="value">{{ incident.category }}</div>
+    </div>
+    <div class="field">
+        <div class="label">УРОВЕНЬ УГРОЗЫ</div>
+        <div class="value"><span class="threat-{{ incident.threat_level|lower }}">{{ incident.threat_level }}</span></div>
+    </div>
+</div>
+
+<div style="background: var(--bg-panel); padding: 1.5rem; margin-top: 1.5rem; border: 1px solid var(--border);">
+    <div class="label" style="color: var(--text-dim); font-size: 0.7rem; letter-spacing: 2px;">КРАТКОЕ ОПИСАНИЕ</div>
+    <p style="margin-top: 0.5rem; line-height: 1.6;">{{ incident.summary }}</p>
+</div>
+
+<div style="background: var(--bg-panel); padding: 1.5rem; margin-top: 1.5rem; border: 1px solid var(--border);">
+    <div class="label" style="color: var(--text-dim); font-size: 0.7rem; letter-spacing: 2px;">ДЕТАЛИ</div>
+    <p style="margin-top: 0.5rem; line-height: 1.6;">{{ incident.description }}</p>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;">
+    <div style="background: var(--bg-panel); padding: 1.5rem; border: 1px solid var(--border);">
+        <div class="label" style="color: var(--text-dim); font-size: 0.7rem; letter-spacing: 2px;">ЖЕРТВЫ</div>
+        <div style="margin-top: 1rem;">
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
+                <span style="color: var(--text-dim);">Убито:</span>
+                <span style="color: var(--accent-red); font-weight: bold;">{{ incident.casualties.killed }}</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border);">
+                <span style="color: var(--text-dim);">Ранено:</span>
+                <span style="color: #f59e0b; font-weight: bold;">{{ incident.casualties.injured }}</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 0.5rem 0;">
+                <span style="color: var(--text-dim);">Свидетели:</span>
+                <span style="color: var(--accent); font-weight: bold;">{{ incident.casualties.witnesses }}</span>
+            </div>
+        </div>
+    </div>
+    
+    <div style="background: var(--bg-panel); padding: 1.5rem; border: 1px solid var(--border);">
+        <div class="label" style="color: var(--text-dim); font-size: 0.7rem; letter-spacing: 2px;">ЗАИНТЕРЕСОВАННЫЕ СТОРОНЫ</div>
+        <ul style="margin-top: 1rem; padding-left: 1.5rem; line-height: 1.8;">
+            {% for party in incident.involved_parties %}
+            <li style="color: var(--text);">{{ party }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div style="background: var(--bg-panel); padding: 1.5rem; margin-top: 1.5rem; border: 1px solid var(--border);">
+    <div class="label" style="color: var(--text-dim); font-size: 0.7rem; letter-spacing: 2px;">СТАТУС РАССЛЕДОВАНИЯ</div>
+    <p style="margin-top: 0.5rem; line-height: 1.6;">{{ incident.status_details }}</p>
+    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.8rem;">
+        Последнее обновление: {{ incident.last_update }}
+    </div>
+</div>
+{% endblock %}
